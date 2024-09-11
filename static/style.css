@@ -1,9 +1,9 @@
 :root {
-    --primary-color: #1a237e; /* Dark blue */
-    --secondary-color: #3949ab; /* Slightly lighter blue */
-    --text-color: #ffffff; /* White text for contrast */
-    --background-color: #0d1117; /* Very dark blue/black for background */
-    --accent-color: #7986cb; /* Light blue for accents */
+    --primary-color: #700000; /* Dark blue */
+    --secondary-color: #0d0f12; /* Slightly lighter blue */
+    --text-color: rgba(255, 255, 255, 0.63); /* White text for contrast */
+    --background-color: #023650; /* Very dark blue/black for background */
+    --accent-color: rgba(255, 255, 255, 0.51); /* Light blue for accents */
 }
 
 body {
@@ -93,6 +93,7 @@ input[type="text"],
 input[type="email"],
 textarea {
     width: 100%;
+    margin: -10px;
     padding: 10px;
     border: 1px solid var(--secondary-color);
     border-radius: 4px;
@@ -166,4 +167,26 @@ a:hover {
 
 .bio-content p:last-child {
     margin-bottom: 0;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
 }

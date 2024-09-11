@@ -3,8 +3,20 @@
 {% block title %}Contact - Your Musician Portfolio{% endblock %}
 
 {% block content %}
+{# Flash messages display #}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
 <h2>Contact Me</h2>
+
 <form action="{{ url_for('contact') }}" method="post">
+    <p>Call or text (419) 581-9634</p>
     <div>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -21,5 +33,6 @@
         <button type="submit">Send Message</button>
     </div>
 </form>
+
 <p>Feel free to get in touch with any questions or booking inquiries!</p>
 {% endblock %}

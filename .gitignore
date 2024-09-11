@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+
+# Flask file
+instance/
+
+# If using SQLite database
+*.db
+
+# Log files
+*.log
+
+*.env

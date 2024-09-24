@@ -1,75 +1,137 @@
 :root {
-    --primary-color: #700000; /* Dark blue */
-    --secondary-color: #0d0f12; /* Slightly lighter blue */
-    --text-color: rgba(255, 255, 255, 0.63); /* White text for contrast */
-    --background-color: #023650; /* Very dark blue/black for background */
-    --accent-color: rgba(255, 255, 255, 0.51); /* Light blue for accents */
+    --primary-color: #000000; /* Deep black */
+    --secondary-color: #00FFFF; /* Bright cyan/turquoise */
+    --text-color: #FFFFFF; /* White text for contrast */
+    --background-color: #050A30; /* Very dark blue for background */
+    --accent-color: #FF00FF; /* Vibrant purple/magenta */
+    --electric-blue: #0099FF; /* Electric blue for additional accents */
+    --base-font-size: 18px; /* Increased base font size */
+    --heading-scale: 1.2; /* Scale factor for headings */
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Rajdhani', sans-serif; /* Futuristic font */
+    font-size: var(--base-font-size);
     line-height: 1.6;
     color: var(--text-color);
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: var(--background-color);
+    background-image: url('/static/images/openart-image_headphones.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 10, 48, 0.7); /* Dark overlay to improve text readability */
+    z-index: -1;
 }
 
 header {
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--secondary-color);
     text-align: center;
     padding: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    box-shadow: 0 0 20px var(--secondary-color);
 }
 
 header h1 {
-    color: var(--text-color);
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--secondary-color);
+}
+
+h1 {
+    font-size: calc(var(--base-font-size) * var(--heading-scale) * 2.5);
+}
+
+h2 {
+    font-size: calc(var(--base-font-size) * var(--heading-scale) * 2);
+}
+
+h3 {
+    font-size: calc(var(--base-font-size) * var(--heading-scale) * 1.75);
+}
+
+h4 {
+    font-size: calc(var(--base-font-size) * var(--heading-scale) * 1.5);
+}
+
+p, ul, ol, li {
+    font-size: var(--base-font-size);
+}
+
+.subtitle {
+    font-size: calc(var(--base-font-size) * 1.2);
 }
 
 nav {
-    background-color: var(--secondary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     color: var(--text-color);
     padding: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: var(--text-color);
     text-decoration: none;
+    text-transform: uppercase;
+    font-size: calc(var(--base-font-size) * 1.1);
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: var(--accent-color);
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px var(--secondary-color);
 }
 
 main {
-    background-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    border: 1px solid var(--secondary-color);
 }
 
 h1, h2, h3 {
-    color: var(--accent-color);
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--secondary-color);
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
     padding: 10px;
-    background-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     color: var(--text-color);
+    border-top: 2px solid var(--accent-color);
 }
 
 /* Form styles */
@@ -85,21 +147,23 @@ form div {
 label {
     display: block;
     margin-bottom: 5px;
+    font-size: calc(var(--base-font-size) * 1.1);
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--secondary-color);
+    text-transform: uppercase;
 }
 
 input[type="text"],
 input[type="email"],
 textarea {
     width: 100%;
-    margin: -10px;
     padding: 10px;
     border: 1px solid var(--secondary-color);
     border-radius: 4px;
-    font-size: 16px;
-    background-color: var(--background-color);
+    font-size: var(--base-font-size);
+    background-color: rgba(0, 0, 0, 0.7);
     color: var(--text-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
 }
 
 textarea {
@@ -108,17 +172,20 @@ textarea {
 
 button[type="submit"] {
     background-color: var(--secondary-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: calc(var(--base-font-size) * 1.1);
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 button[type="submit"]:hover {
     background-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
 }
 
 /* Video container styles */
@@ -129,6 +196,9 @@ button[type="submit"]:hover {
     height: 0;
     overflow: hidden;
     margin-bottom: 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .video-container iframe,
@@ -142,22 +212,24 @@ button[type="submit"]:hover {
 
 /* Link styles */
 a {
-    color: var(--accent-color);
+    color: var(--secondary-color);
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
 }
-
 
 .bio-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    border: 1px solid var(--secondary-color);
 }
 
 .bio-content p {
@@ -171,22 +243,35 @@ a:hover {
 
 .flash-messages {
     margin-bottom: 20px;
+    font-size: calc(var(--base-font-size) * 1.1);
 }
 
 .alert {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
+    border: 1px solid;
+    text-align: center;
 }
 
 .alert-success {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
+    background-color: rgba(0, 255, 0, 0.2);
+    border-color: #00FF00;
+    color: #00FF00;
 }
 
 .alert-error {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
+    background-color: rgba(255, 0, 0, 0.2);
+    border-color: #FF0000;
+    color: #FF0000;
+}
+
+/* Add some neon glow effects */
+.neon-glow {
+    text-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color);
+}
+
+.neon-border {
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--secondary-color);
 }

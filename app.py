@@ -54,7 +54,7 @@ def contact():
             msg.body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
             mail.send(msg)
 
-            flash('Your message has been sent!', 'success')
+            flash('Thanks for reaching out! Your message has been sent!', 'success')
             app.logger.info(f"Message sent successfully from {email}")
         except Exception as e:
             flash('An error occurred while sending your message. Please try again later.', 'error')

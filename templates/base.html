@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Musician Portfolio{% endblock %}</title>
+    <title>{% block title %}Patrick James Springsteen - Cyberpunk Musician{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Patrick James Springsteen - Musician</h1>
+    <header class="neon-border">
+        <h1 class="neon-glow">Patrick James Springsteen</h1>
+        <p class="subtitle">Heartland Fusion Artist</p>
     </header>
-    <nav>
+    <nav class="neon-border">
         <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('bio') }}">Bio</a></li>
-            <li><a href="{{ url_for('music') }}">Music</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+            <li><a href="{{ url_for('bio') }}" class="nav-link">Bio</a></li>
+            <li><a href="{{ url_for('music') }}" class="nav-link">Music</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
         </ul>
     </nav>
-    <main>
+    <main class="neon-border">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
+    <footer class="neon-border">
         <p>&copy; 2024 Patrick James Springsteen. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link neon-glow">Twitter</a>
+            <a href="#" class="social-link neon-glow">Instagram</a>
+            <a href="#" class="social-link neon-glow">YouTube</a>
+        </div>
     </footer>
 </body>
 </html>

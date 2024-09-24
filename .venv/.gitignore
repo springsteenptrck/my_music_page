@@ -23,3 +23,5 @@ instance/
 
 # Log files
 *.log
+
+*.env

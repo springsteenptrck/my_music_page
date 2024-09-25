@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75c91f2d-2ec4-4980-a4e2-586031b2c450" name="Changes" comment="Updated color scheme, and contact functionality">
-      <change afterPath="$PROJECT_DIR$/static/images/heavens_clouds.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my_music_page.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_music_page.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/music.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +68,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/patrick_springsteen/PycharmProjects/my_music_page&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sprin/PycharmProjects/my_music_page&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -116,6 +115,8 @@
       <workItem from="1726076906347" duration="6962000" />
       <workItem from="1726971284171" duration="746000" />
       <workItem from="1727054433030" duration="1477000" />
+      <workItem from="1727233345517" duration="835000" />
+      <workItem from="1727234280748" duration="4044000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

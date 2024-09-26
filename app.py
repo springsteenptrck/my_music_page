@@ -3,9 +3,9 @@ from flask_mail import Mail, Message
 import requests
 import os
 import logging
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-#load_dotenv()  # Load environment variables from .env file
+load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
 

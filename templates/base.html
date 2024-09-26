@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Patrick James Springsteen - Cyberpunk Musician{% endblock %}</title>
+    <title>{% block title %}Patrick James Springsteen - Heartland Fusion Artist{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <canvas id="backgroundCanvas" class="background-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+
     <header class="neon-border">
         <h1 class="neon-glow">Patrick James Springsteen</h1>
         <p class="subtitle">Heartland Fusion Artist</p>
@@ -41,5 +43,8 @@
             <a href="#" class="social-link neon-glow">SoundCloud</a>
         </div>
     </footer>
+
+    <script src="https://www.youtube.com/iframe_api" defer></script>
+    <script src="{{ url_for('static', filename='js_files/youtubeInteractiveBackground.js') }}" defer></script>
 </body>
 </html>

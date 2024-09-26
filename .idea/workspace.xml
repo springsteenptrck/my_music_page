@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75c91f2d-2ec4-4980-a4e2-586031b2c450" name="Changes" comment="Updated color scheme, and contact functionality">
-      <change afterPath="$PROJECT_DIR$/static/images/heavens_clouds.jpg" afterDir="false" />
+    <list default="true" id="75c91f2d-2ec4-4980-a4e2-586031b2c450" name="Changes" comment="Updated Home intro, music page, soundcloud playlist">
+      <change afterPath="$PROJECT_DIR$/static/js_files/interactiveAudioBackground.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js_files/youtubeInteractiveBackground.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/music.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +24,7 @@
         <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -38,6 +40,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -116,6 +124,10 @@
       <workItem from="1726076906347" duration="6962000" />
       <workItem from="1726971284171" duration="746000" />
       <workItem from="1727054433030" duration="1477000" />
+      <workItem from="1727203507364" duration="10403000" />
+      <workItem from="1727286056109" duration="9489000" />
+      <workItem from="1727367053025" duration="8009000" />
+      <workItem from="1727378048567" duration="3295000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -141,7 +153,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726095379035</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated color scheme, and contact functionality">
+      <option name="closed" value="true" />
+      <created>1727212474926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727212474926</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated Home intro, music page, soundcloud playlist">
+      <option name="closed" value="true" />
+      <created>1727224977752</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727224977752</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +180,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -162,6 +202,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Test" />
     <MESSAGE value="Updated color scheme, and contact functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated color scheme, and contact functionality" />
+    <MESSAGE value="Updated Home intro, music page, soundcloud playlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Home intro, music page, soundcloud playlist" />
   </component>
 </project>

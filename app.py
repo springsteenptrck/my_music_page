@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
 from flask_mail import Mail, Message
 import requests
 import os
@@ -60,10 +60,14 @@ def contact():
             flash('An error occurred while sending your message. Please try again later.', 'error')
             app.logger.error(f"Error sending message: {str(e)}")
 
-        return redirect(url_for('contact'))
+        return redirect(url_for('home'))
 
     return render_template('contact.html')
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     app.run(debug=True)

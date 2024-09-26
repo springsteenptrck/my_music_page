@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75c91f2d-2ec4-4980-a4e2-586031b2c450" name="Changes" comment="Updated Home intro, music page, soundcloud playlist">
-      <change afterPath="$PROJECT_DIR$/static/js_files/interactiveAudioBackground.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js_files/youtubeInteractiveBackground.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/music.html" afterDir="false" />
-    </list>
+    <list default="true" id="75c91f2d-2ec4-4980-a4e2-586031b2c450" name="Changes" comment="Added a canvas and interactive background to the music page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,7 +119,7 @@
       <workItem from="1727203507364" duration="10403000" />
       <workItem from="1727286056109" duration="9489000" />
       <workItem from="1727367053025" duration="8009000" />
-      <workItem from="1727378048567" duration="3295000" />
+      <workItem from="1727378048567" duration="3600000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -169,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727224977752</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added a canvas and interactive background to the music page">
+      <option name="closed" value="true" />
+      <created>1727382598093</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727382598093</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +203,7 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Updated color scheme, and contact functionality" />
     <MESSAGE value="Updated Home intro, music page, soundcloud playlist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Home intro, music page, soundcloud playlist" />
+    <MESSAGE value="Added a canvas and interactive background to the music page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a canvas and interactive background to the music page" />
   </component>
 </project>

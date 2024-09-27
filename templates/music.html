@@ -5,20 +5,26 @@
 {% block content %}
 <h2>Welcome to My Music World</h2>
 
-<div class="video-container" data-video-id="lLZegKJHp4k">
-    <div id="player1"></div>
-</div>
-<div class="video-container" data-video-id="UEF4wF5l39w">
-    <div id="player2"></div>
-</div>
-<div class="video-container" data-video-id="lEUnblr2KZQ">
-    <div id="player3"></div>
-</div>
-<div class="video-container" data-video-id="UxoWF60Ub38">
-    <div id="player4"></div>
-</div>
-<div class="video-container" data-video-id="xeFUtjC8P_E">
-    <div id="player5"></div>
+<div class="slider-container">
+    <div class="slider">
+        <div class="video-container" data-video-id="lLZegKJHp4k">
+            <div id="player1"></div>
+        </div>
+        <div class="video-container" data-video-id="UEF4wF5l39w">
+            <div id="player2"></div>
+        </div>
+        <div class="video-container" data-video-id="lEUnblr2KZQ">
+            <div id="player3"></div>
+        </div>
+        <div class="video-container" data-video-id="UxoWF60Ub38">
+            <div id="player4"></div>
+        </div>
+        <div class="video-container" data-video-id="xeFUtjC8P_E">
+            <div id="player5"></div>
+        </div>
+    </div>
+    <button class="slider-button prev">&lt;</button>
+    <button class="slider-button next">&gt;</button>
 </div>
 
 <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fpatrick-springsteen&color=white_orange&size=32" style="width: 32px; height: 32px;">
@@ -130,6 +136,35 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add this to help with debugging
 window.addEventListener('videoStateChange', function(event) {
   console.log('Video state changed:', event.detail.state);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
+        onYouTubeIframeAPIReady();
+    }
+
+    const slider = document.querySelector('.slider');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndex = 0;
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < videoContainers.length - 1) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
 });
 </script>
 {% endblock %}

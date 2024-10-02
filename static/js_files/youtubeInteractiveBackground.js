@@ -36,12 +36,28 @@ class YouTubeInteractiveBackground {
   addEventListeners() {
     window.addEventListener('videoStateChange', (event) => {
       if (event.detail.state === 'playing') {
-        this.isPlaying = true;
-        this.animateBackground();
-      } else if (event.detail.state === 'paused') {
-        this.isPlaying = false;
+        this.start();
+      } else if (event.detail.state === 'paused' || event.detail.state === 'ended') {
+        this.stop();
       }
     });
+
+    window.addEventListener('soundCloudStateChange', (event) => {
+      if (event.detail.state === 'playing') {
+        this.start();
+      } else if (event.detail.state === 'paused' || event.detail.state === 'finished') {
+        this.stop();
+      }
+    });
+  }
+
+  start() {
+    this.isPlaying = true;
+    this.animateBackground();
+  }
+
+  stop() {
+    this.isPlaying = false;
   }
 
   getSimulatedAudioLevel() {

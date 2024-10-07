@@ -346,28 +346,108 @@ a:hover {
 .next { right: 20px; }
 
 .social-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 200px; /* Adjust this value based on your layout needs */
-    margin: 0 auto; /* Center the container if desired */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  border: 1px solid #00FFFF;
 }
 
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px; /* Slightly larger than the SVG to add some space */
-    height: 40px;
-    border-radius: 50%; /* Optional: makes the clickable area circular */
-    transition: transform 0.3s ease; /* Optional: adds a hover effect */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #00FFFF;
 }
 
-.social-links a:hover {
-    transform: scale(1.1); /* Optional: slightly enlarges the icon on hover */
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  fill: #00FFFF;
+  transition: all 0.3s ease;
 }
 
-/* Ensure SVGs are centered within their container */
-.social-links svg {
-    display: block;
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #00FFFF;
+  border-radius: inherit;
+  filter: blur(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover::before {
+  opacity: 0.7;
+  filter: blur(20px);
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  border-color: #FF00FF;
+  animation: neonPulse 1.5s infinite;
+}
+
+.social-link:hover svg {
+  fill: #FF00FF;
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF, 0 0 20px #00FFFF;
+  }
+  50% {
+    box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF, 0 0 40px #00FFFF;
+  }
+  100% {
+    box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF, 0 0 20px #00FFFF;
+  }
+}
+
+.soundcloud-link svg {
+  stroke: #00FFFF;
+  fill: none;
+  filter: drop-shadow(0 0 2px #00FFFF);
+  transition: all 0.3s ease;
+}
+
+.soundcloud-link:hover svg {
+  stroke: #FF00FF;
+  filter: drop-shadow(0 0 5px #FF00FF);
+}
+
+.soundcloud-link svg path:nth-child(2) {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: draw 1.5s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.soundcloud-link svg path:nth-child(3),
+.soundcloud-link svg path:nth-child(4) {
+  animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.1; }
 }

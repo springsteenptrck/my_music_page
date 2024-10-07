@@ -14,11 +14,12 @@ class YouTubeInteractiveBackground {
 
     this.isPlaying = false;
     this.waves = [];
-    this.waveCount = 10000000000;
+    this.waveCount = 100;
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
     this.maxRadius = Math.sqrt(this.canvas.width ** 2 + this.canvas.height ** 2) / 2;
     this.simulatedAudioLevel = 0;
+    this.animationFrameId = null;
 
     this.initializeCanvas();
     this.addEventListeners();
@@ -30,48 +31,54 @@ class YouTubeInteractiveBackground {
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
     this.maxRadius = Math.sqrt(this.canvas.width ** 2 + this.canvas.height ** 2) / 2;
-    window.addEventListener('resize', () => this.initializeCanvas());
   }
 
   addEventListeners() {
-    window.addEventListener('videoStateChange', (event) => {
-      if (event.detail.state === 'playing') {
-        this.start();
-      } else if (event.detail.state === 'paused' || event.detail.state === 'ended') {
-        this.stop();
-      }
-    });
+    window.addEventListener('resize', () => this.initializeCanvas());
+    window.addEventListener('backgroundStateChange', (event) => this.handleStateChange(event));
+  }
 
-    window.addEventListener('soundCloudStateChange', (event) => {
-      if (event.detail.state === 'playing') {
-        this.start();
-      } else if (event.detail.state === 'paused' || event.detail.state === 'finished') {
-        this.stop();
-      }
-    });
+  handleStateChange(event) {
+    console.log('Background state change event:', event.detail.state);
+    if (event.detail.state === 'playing') {
+      this.start();
+    } else {
+      this.stop();
+    }
   }
 
   start() {
+    console.log('Starting animation');
+    this.stop();  // Ensure we stop any existing animation before starting
     this.isPlaying = true;
+    this.waves = [];
     this.animateBackground();
   }
-
   stop() {
+    console.log('Stopping animation');
     this.isPlaying = false;
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   getSimulatedAudioLevel() {
-    // Simulate audio level changes
     this.simulatedAudioLevel += (Math.random() - 0.5) * 0.1;
     this.simulatedAudioLevel = Math.max(0, Math.min(1, this.simulatedAudioLevel));
     return this.simulatedAudioLevel;
   }
 
+
   animateBackground() {
     const draw = () => {
-      if (!this.isPlaying) return;
+      if (!this.isPlaying) {
+        console.log('Animation stopped');
+        return;
+      }
 
-      requestAnimationFrame(draw);
+      this.animationFrameId = requestAnimationFrame(draw);
 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -82,25 +89,22 @@ class YouTubeInteractiveBackground {
         this.waves.push({
           radius: 0,
           alpha: 0.5,
-          speed: 2 + audioLevel * 3  // Speed varies with simulated audio level
+          speed: 2 + audioLevel * 3
         });
       }
 
       // Draw and update waves
-      this.waves.forEach((wave, index) => {
+      this.waves = this.waves.filter(wave => {
         this.ctx.beginPath();
         this.ctx.arc(this.centerX, this.centerY, wave.radius, 0, Math.PI * 2);
-        this.ctx.strokeStyle = `rgba(0, 255, 255, ${wave.alpha * audioLevel})`;  // Alpha varies with simulated audio level
-        this.ctx.lineWidth = 3 + audioLevel * 2;  // Line width varies with simulated audio level
+        this.ctx.strokeStyle = `rgba(0, 255, 255, ${wave.alpha * audioLevel})`;
+        this.ctx.lineWidth = 3 + audioLevel * 2;
         this.ctx.stroke();
 
         wave.radius += wave.speed;
         wave.alpha -= 0.002;
 
-        // Remove waves that have expanded beyond the max radius
-        if (wave.radius > this.maxRadius) {
-          this.waves.splice(index, 1);
-        }
+        return wave.radius <= this.maxRadius;
       });
     };
 

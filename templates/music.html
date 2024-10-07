@@ -46,6 +46,9 @@ let audioContext;
 let analyzer;
 let audioIsInitialized = false;
 let soundcloudWidget;
+let lastActivePlayer = null;
+let isBackgroundPlaying = false;
+let isSoundCloudPlaying = false;
 
 function initializeAudio() {
   if (!audioIsInitialized) {
@@ -64,74 +67,127 @@ function initializeAudio() {
 function initializeInteractiveBackground() {
   if (typeof YouTubeInteractiveBackground === 'function' && !interactiveBackground) {
     interactiveBackground = new YouTubeInteractiveBackground('backgroundCanvas');
+    console.log('Interactive background initialized');
   } else if (!YouTubeInteractiveBackground) {
     console.log('YouTubeInteractiveBackground not found, retrying in 1 second');
     setTimeout(initializeInteractiveBackground, 1000);
   }
 }
 
-function startInteractiveBackground() {
-  if (interactiveBackground && typeof interactiveBackground.start === 'function') {
-    interactiveBackground.start();
-  }
-}
-
-function stopInteractiveBackground() {
-  if (interactiveBackground && typeof interactiveBackground.stop === 'function') {
-    interactiveBackground.stop();
-  }
-}
-
 function initializeSoundCloudWidget() {
   soundcloudWidget = SC.Widget('soundcloud-player');
   soundcloudWidget.bind(SC.Widget.Events.PLAY, function() {
-    if (activePlayer && typeof activePlayer.pauseVideo === 'function') {
-      activePlayer.pauseVideo();
-    }
-    window.dispatchEvent(new CustomEvent('soundCloudStateChange', {
-      detail: { state: 'playing' }
-    }));
+    console.log('SoundCloud started playing');
+    isSoundCloudPlaying = true;
+    handleMediaPlay();
   });
   soundcloudWidget.bind(SC.Widget.Events.PAUSE, function() {
-    window.dispatchEvent(new CustomEvent('soundCloudStateChange', {
-      detail: { state: 'paused' }
-    }));
+    console.log('SoundCloud paused');
+    isSoundCloudPlaying = false;
+    handleMediaPause();
   });
   soundcloudWidget.bind(SC.Widget.Events.FINISH, function() {
-    window.dispatchEvent(new CustomEvent('soundCloudStateChange', {
-      detail: { state: 'finished' }
-    }));
+    console.log('SoundCloud finished');
+    isSoundCloudPlaying = false;
+    handleMediaEnd();
   });
 }
 
 function onPlayerStateChange(event) {
+  console.log('YouTube player state changed:', event.data);
   switch(event.data) {
     case YT.PlayerState.PLAYING:
-      if (activePlayer && activePlayer !== event.target) {
-        activePlayer.pauseVideo();
-      }
-      activePlayer = event.target;
-      if (!audioIsInitialized) {
-        initializeAudio();
-      }
-      if (soundcloudWidget && typeof soundcloudWidget.pause === 'function') {
-        soundcloudWidget.pause();
-      }
-      window.dispatchEvent(new CustomEvent('videoStateChange', {
-        detail: { state: 'playing' }
-      }));
+      console.log('Video started playing');
+      handleMediaPlay(event.target);
       break;
     case YT.PlayerState.PAUSED:
+      console.log('Video paused');
+      handleMediaPause();
+      break;
     case YT.PlayerState.ENDED:
-      window.dispatchEvent(new CustomEvent('videoStateChange', {
-        detail: { state: event.data === YT.PlayerState.PAUSED ? 'paused' : 'ended' }
-      }));
+      console.log('Video ended');
+      handleMediaEnd();
       break;
     case YT.PlayerState.BUFFERING:
-      window.dispatchEvent(new CustomEvent('videoStateChange', {
-        detail: { state: 'buffering' }
-      }));
+      console.log('Video buffering');
+      // Don't update background for buffering state
       break;
+  }
+}
+
+function handleMediaPlay(player) {
+  if (player) {  // YouTube
+    if (activePlayer && activePlayer !== player) {
+      console.log('Switching to new video');
+      activePlayer.pauseVideo();
+      lastActivePlayer = activePlayer;
+    }
+    activePlayer = player;
+    if (soundcloudWidget) {
+      soundcloudWidget.pause();
+      isSoundCloudPlaying = false;
+    }
+  } else {  // SoundCloud
+    if (activePlayer) {
+      activePlayer.pauseVideo();
+    }
+  }
+
+  if (!audioIsInitialized) {
+    initializeAudio();
+  }
+
+  startBackground();
+}
+
+function handleMediaPause() {
+  if (!isAnyMediaPlaying()) {
+    console.log('All media paused, stopping background');
+    stopBackground();
+  } else {
+    console.log('Some media still playing, keeping background active');
+  }
+}
+
+function handleMediaEnd() {
+  if (!isAnyMediaPlaying()) {
+    console.log('All media ended, stopping background');
+    stopBackground();
+  } else {
+    console.log('Some media still playing, keeping background active');
+  }
+}
+
+function isAnyMediaPlaying() {
+  let playing = false;
+  videoContainers.forEach(function(container) {
+    const player = YT.get(container.querySelector('iframe').id);
+    if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+      playing = true;
+    }
+  });
+  return playing || isSoundCloudPlaying;
+}
+
+function startBackground() {
+  if (!isBackgroundPlaying) {
+    console.log('Starting background');
+    if (interactiveBackground) {
+      interactiveBackground.start();
+    }
+    isBackgroundPlaying = true;
+    window.dispatchEvent(new CustomEvent('backgroundStateChange', { detail: { state: 'playing' } }));
+  }
+}
+
+function stopBackground() {
+  if (isBackgroundPlaying) {
+    console.log('Stopping background');
+    if (interactiveBackground) {
+      interactiveBackground.stop();
+    }
+    isBackgroundPlaying = false;
+    window.dispatchEvent(new CustomEvent('backgroundStateChange', { detail: { state: 'stopped' } }));
   }
 }
 
@@ -167,9 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
     onYouTubeIframeAPIReady();
   }
-
-  // Slider code remains unchanged
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.slider');
     const prevButton = document.querySelector('.slider-button.prev');
@@ -200,8 +255,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add this to help with debugging
-window.addEventListener('videoStateChange', function(event) {
-  console.log('Video state changed:', event.detail.state);
+window.addEventListener('backgroundStateChange', function(event) {
+  console.log('Background state changed:', event.detail.state);
 });
 </script>
 {% endblock %}

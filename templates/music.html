@@ -28,9 +28,6 @@
 </div>
 
 
-<iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fpatrick-springsteen&color=white_orange&size=32" style="width: 32px; height: 32px;">
-</iframe>
-
 <div class="playlist-container">
     <h3>My Playlist</h3>
     <iframe id="soundcloud-player" width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1881597659&color=%236e11ae&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
@@ -172,6 +169,34 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Slider code remains unchanged
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const prevButton = document.querySelector('.slider-button.prev');
+    const nextButton = document.querySelector('.slider-button.next');
+    const videoContainers = document.querySelectorAll('.video-container');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        const offset = index * -100;
+        slider.style.transform = `translateX(${offset}%)`;
+    }
+
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % videoContainers.length;
+        showSlide(currentIndex);
+    }
+
+    function showPrevSlide() {
+        currentIndex = (currentIndex - 1 + videoContainers.length) % videoContainers.length;
+        showSlide(currentIndex);
+    }
+
+    nextButton.addEventListener('click', showNextSlide);
+    prevButton.addEventListener('click', showPrevSlide);
+
+    // Initialize the slider
+    showSlide(0);
 });
 
 // Add this to help with debugging

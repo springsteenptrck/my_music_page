@@ -19,7 +19,7 @@
             <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
             <li><a href="{{ url_for('bio') }}" class="nav-link">Bio</a></li>
             <li><a href="{{ url_for('music') }}" class="nav-link">Music</a></li>
-            <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-link">Connect</a></li>
         </ul>
     </nav>
     <main class="neon-border">
@@ -38,10 +38,19 @@
     <footer class="neon-border">
         <p>&copy; 2024 Patrick James Springsteen. All rights reserved.</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/patrick.james.springsteen" class="social-link neon-glow">Facebook</a>
-            <a href="https://www.youtube.com/@pspringsteen100" class="social-link neon-glow">YouTube</a>
-            <a href="https://soundcloud.com/patrick-springsteen" class="social-link neon-glow">SoundCloud</a>
-        </div>
+        <a href="https://www.facebook.com/patrick.james.springsteen" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+        </a>
+        <a href="https://www.youtube.com/@pspringsteen100/videos" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#FF0000">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+        </a>
+        <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fpatrick-springsteen&color=white_orange&size=32" style="width: 32px; height: 32px;">
+        </iframe>
+    </div>
     </footer>
 
     <script src="https://www.youtube.com/iframe_api" defer></script>

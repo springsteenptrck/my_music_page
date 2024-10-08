@@ -40,34 +40,9 @@ def music():
     return render_template('music.html')
 
 
-@app.route('/contact', methods=['GET', 'POST'])
+@app.route('/contact')
 def contact():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-
-        try:
-            # Send email
-            msg = Message('New Contact Form Submission',
-                          recipients=[app.config['MAIL_USERNAME']])
-            msg.body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
-            mail.send(msg)
-
-            flash('Thanks for reaching out! Your message has been sent!', 'success')
-            app.logger.info(f"Message sent successfully from {email}")
-        except Exception as e:
-            flash('An error occurred while sending your message. Please try again later.', 'error')
-            app.logger.error(f"Error sending message: {str(e)}")
-
-        return redirect(url_for('home'))
-
     return render_template('contact.html')
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     app.run(debug=True)
